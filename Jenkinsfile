@@ -8,7 +8,7 @@ pipeline {
           // Define the API request data
           // Make the API request with curl
            sh "curl \
-            --header 'X-Vault-Token: $api_token' \
+            --header 'X-Vault-Token: $VAULT_TOKEN' \
             --request POST \
             --silent \
             --data @data/learn-vault-ldap-role.json \
