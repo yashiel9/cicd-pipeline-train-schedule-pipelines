@@ -32,12 +32,11 @@ pipeline {
           sh 'echo TOKEN=$VAULT_TOKEN'
           sh 'echo ADDR=$VAULT_ADDR'
           sh "curl \
-            --header 'X-Vault-Token: $VAULT_TOKEN' \
-            --request POST \
-            --silent \
-            --data @data/learn-vault-ldap-role.json \
-            --output response.txt \
-            $VAULT_ADDR/v1/ldap/static-role/learnFromJenkins"
+          --header 'X-Vault-Token: $VAULT_TOKEN' \
+          --request POST \
+          --silent \
+          --data @data/learn-vault-ldap-role.json \
+          $VAULT_ADDR/v1/ldap/static-role/learn2"
         }
       }
     }
