@@ -33,6 +33,7 @@ pipeline {
           sh 'echo ADDR=$VAULT_ADDR'
           sh "curl \
           --header 'X-Vault-Token: $VAULT_TOKEN' \
+          --header 'X-Vault-Namespace: $VAULT_NAMESPACE' \
           --request POST \
           --silent \
           --data @data/learn-vault-ldap-role.json \
