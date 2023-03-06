@@ -31,6 +31,13 @@ pipeline {
         vaultAddr: 'http://host.docker.internal:8200']]) {
           sh 'echo TOKEN=$VAULT_TOKEN'
           sh 'echo ADDR=$VAULT_ADDR'
+          sh "curl \
+            --header 'X-Vault-Token: $VAULT_TOKEN' \
+            --request POST \
+            --silent \
+            --data @data/learn-vault-ldap-role.json \
+            --output response.txt \
+            $VAULT_ADDR/v1/ldap/static-role/learnFromJenkins"
         }
       }
     }
