@@ -31,17 +31,22 @@ pipeline {
         vaultAddr: 'http://host.docker.internal:8200']]) {
           sh 'echo TOKEN=$VAULT_TOKEN'
           sh 'echo ADDR=$VAULT_ADDR'
-          sh "curl \
-          --header 'X-Vault-Token: $VAULT_TOKEN' \
-          --header 'X-Vault-Namespace: $VAULT_NAMESPACE' \
-          --request POST \
-          --silent \
-          --data @data/learn-vault-ldap-role.json \
-          $VAULT_ADDR/v1/ldap/static-role/learn2"
+          // sh "curl \
+          // --header 'X-Vault-Token: $VAULT_TOKEN' \
+          // --header 'X-Vault-Namespace: $VAULT_NAMESPACE' \
+          // --request POST \
+          // --silent \
+          // --data @data/learn-vault-ldap-role.json \
+          // $VAULT_ADDR/v1/ldap/static-role/learn2"
+          
+          sh 'curl \
+    --header "X-Vault-Token: $VAULT_TOKEN" \
+    --request GET \
+    $VAULT_ADDR/v1/ldap/static-role/learn'
+          
         }
       }
     }
-    
     // stage('Build') {
     //   steps {
     //     echo 'Running build automation'
