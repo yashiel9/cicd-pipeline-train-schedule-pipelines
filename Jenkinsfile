@@ -36,11 +36,13 @@ pipeline {
           --data @data/learn-vault-ldap-role.json \
           $VAULT_ADDR/v1/ldap/static-role/learn2"
 
-          def response = readFile('response.txt')
-          if (response.contains('error')) {
-            error 'API call failed '
-          } else {
-            echo 'API call successful'
+          step('Read response') {
+            def response = readFile('response.txt')
+            if (response.contains('error')) {
+              error 'API call failed '
+            } else {
+              echo 'API call successful'
+            }
           }
           
     //       sh 'curl \
