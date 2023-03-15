@@ -47,12 +47,14 @@ pipeline {
     stage('Iterating over Array of roles') {
       steps {
         script {
-            sh "curl \
+            sh '''
+            curl \
           --header 'X-Vault-Token: $VAULT_TOKEN' \
           --request POST \
           --silent \
           --data @data/learn-vault-ldap-role.json \
-          $VAULT_ADDR/v1/ldap/static-role/$ROLE_NAME"
+          $VAULT_ADDR/v1/ldap/static-role/$ROLE_NAME
+          '''
         }
       }
     }
