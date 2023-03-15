@@ -18,7 +18,7 @@ pipeline {
         credentialsId: 'vault-jenkins-role-dev', 
         tokenVariable: 'VAULT_TOKEN', 
         vaultAddr: 'http://host.docker.internal:8200']]) {
-          sh "echo TOKEN = $VAULT_TOKEN"
+          sh 'export TOKEN = $VAULT_TOKEN'
           // sh "curl \
           // --header 'X-Vault-Token: $VAULT_TOKEN' \
           // --request POST \
@@ -49,7 +49,7 @@ pipeline {
         script {
             sh '''
             curl \
-          --header 'X-Vault-Token: $VAULT_TOKEN' \
+          --header 'X-Vault-Token: $TOKEN' \
           --request POST \
           --silent \
           --data @data/learn-vault-ldap-role.json \
